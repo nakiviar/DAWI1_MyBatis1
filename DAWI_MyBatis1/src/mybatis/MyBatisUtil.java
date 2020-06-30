@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class MyBatisUtil {
 	protected static final SqlSessionFactory FACTORY;
+	
 	static {
 		try {
 			Reader reader = Resources.getResourceAsReader(

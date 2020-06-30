@@ -4,104 +4,101 @@ import java.util.ArrayList;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import mantenimientos.GestionProducto;
-import mantenimientos.GestionUsuario;
 import model.Categoria;
 import model.Producto;
+import service.ProductoService;
 
-public class ProductoAction extends ActionSupport{
+public class ProductoAction extends ActionSupport {
 
-		/**
-	 * 
-	 */
+	/**
+	* 
+	*/
 	private static final long serialVersionUID = 1L;
-		private ArrayList<Categoria> listaCategorias;
-		private ArrayList<Producto> listaProducto;
-		private String filtroCat, mensaje;
-		private Producto p;
-		
-		public String registrarProducto() {
+	private ArrayList<Categoria> listaCategorias;
+	private ArrayList<Producto> listaProducto;
+	private String filtroCat, mensaje;
+	private Producto p;
 
-			//PRODUCTO
-			/* Llamamos al metodo registrar */
-			int i = new GestionProducto().registrarProducto(p);
-
-			if (i == 0) {
-				mensaje = "No se pudo registrar";
-				addActionError("No se registro correctamente");
-				return "error";
-			} else {
-				mensaje = "Registro exitoso";
-				addActionMessage(mensaje);
-			}
-
-			
-			return "ok";
-		}
-		
-		
-		public String listadoProductos() {
-			listaProducto = new GestionProducto().listarProductos();
-			return "ok";
-		}
-		
-		//CATEGORIA
-		
-		public String listadoCategoriasXfiltro() {
-			listaCategorias= new GestionProducto().filtrarCategorias(filtroCat);
-			
-			return "ok";
-		}
+	// PRODUCTOS
 	
-		public String listadoCategorias() {
-			listaCategorias= new GestionProducto().listarCategorias();
-			
-			return "ok";
+	public String registrarProducto() {
+		
+		int i = new ProductoService().registrarProducto(p);
+
+		if (i == 0) {
+			mensaje = "No se pudo registrar";
+			addActionError("No se registro correctamente");
+			return "error";
+		} else {
+			mensaje = "Registro exitoso";
+			addActionMessage(mensaje);
 		}
 
-		public ArrayList<Categoria> getListaCategorias() {
-			return listaCategorias;
-		}
+		return "ok";
+	}
 
-		public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
-			this.listaCategorias = listaCategorias;
-		}
+	public String listadoProductos() {
+		listaProducto = new ProductoService().listarProductos();
+		return "ok";
+	}
 
-		public String getFiltroCat() {
-			return filtroCat;
-		}
+	// CATEGORIA
 
-		public void setFiltroCat(String filtroCat) {
-			this.filtroCat = filtroCat;
-		}
+	public String listadoCategoriasXfiltro() {
+		listaCategorias = new ProductoService().filtrarCategorias(filtroCat);
 
-		public String getMensaje() {
-			return mensaje;
-		}
+		return "ok";
+	}
 
-		public void setMensaje(String mensaje) {
-			this.mensaje = mensaje;
-		}
+	public String listadoCategorias() {
+		listaCategorias = new ProductoService().listarCategorias();
 
-		public Producto getP() {
-			return p;
-		}
+		return "ok";
+	}
 
-		public void setP(Producto p) {
-			this.p = p;
-		}
+	// GETTERS AND SETTERS
+	
+	public ArrayList<Categoria> getListaCategorias() {
+		return listaCategorias;
+	}
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
+	public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
 
+	public String getFiltroCat() {
+		return filtroCat;
+	}
 
-		public ArrayList<Producto> getListaProducto() {
-			return listaProducto;
-		}
+	public void setFiltroCat(String filtroCat) {
+		this.filtroCat = filtroCat;
+	}
 
+	public String getMensaje() {
+		return mensaje;
+	}
 
-		public void setListaProducto(ArrayList<Producto> listaProducto) {
-			this.listaProducto = listaProducto;
-		}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	public Producto getP() {
+		return p;
+	}
+
+	public void setP(Producto p) {
+		this.p = p;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public ArrayList<Producto> getListaProducto() {
+		return listaProducto;
+	}
+
+	public void setListaProducto(ArrayList<Producto> listaProducto) {
+		this.listaProducto = listaProducto;
+	}
 }

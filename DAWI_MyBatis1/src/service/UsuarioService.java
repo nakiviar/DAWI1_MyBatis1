@@ -6,33 +6,46 @@ import model.Usuario;
 import mybatis.MyBatisUtil;
 import mybatis.mapper.UsuarioMapper;
 
-public class UsuarioService implements UsuarioMapper{
+public class UsuarioService implements UsuarioMapper {
 
 	@Override
 	public int registrarUsuario(Usuario u) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int rs = 0;
+		SqlSession sqlsession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			UsuarioMapper um = sqlsession.getMapper(UsuarioMapper.class);
+			rs = um.registrarUsuario(u);
+			sqlsession.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error en registrar : " + e);
+		} finally {
+			sqlsession.close();
+		}
+		return rs;
 	}
 
 	@Override
 	public Usuario validarUsuario(Usuario u) {
 		// TODO Auto-generated method stub
-		
-		Usuario u2=null;
-		SqlSession session= MyBatisUtil.getSqlSessionFactory().openSession();
+
+		Usuario usuarioValidado = new Usuario();
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
-			UsuarioMapper um= session.getMapper(UsuarioMapper.class);
-			u2=um.validarUsuario(u);
+			UsuarioMapper usuarioMapper = sqlSession.getMapper(UsuarioMapper.class);
+			usuarioValidado = usuarioMapper.validarUsuario(u); 
+			
 		} catch (Exception e) {
 
-			System.out.println("error en validarusuario :"+e.getMessage());
-			
-		} 
-		finally {
+			System.out.println("error en validarusuario - " + e.getMessage());
+
+		} finally {
 			// TODO: handle finally clause
-			session.close();
+			sqlSession.close();
+			System.out.println("Bienvenido a su sesion : "+usuarioValidado.getNombre()+ " " + usuarioValidado.getApellido());
 		}
-		return u;
+		return usuarioValidado;
 	}
 
 }

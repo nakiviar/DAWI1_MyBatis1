@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 import model.Categoria;
 import model.Producto;
-import model.Usuario;
 
 public interface ProductoMapper {
+	
+	/********        [ Clase ]         ********/
 	
 	public ArrayList<Categoria> listarCategorias();
 	
 	public ArrayList<Categoria> filtrarCategorias(String texto);
+	/********    ------------------    ********/
 
 	public ArrayList<Producto> listarProductos();
 	

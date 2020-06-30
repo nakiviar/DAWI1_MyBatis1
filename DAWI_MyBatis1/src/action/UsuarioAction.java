@@ -1,11 +1,12 @@
 package action;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.opensymphony.xwork2.ActionSupport;
 
-import mantenimientos.GestionUsuario;
-
-import java.util.logging.*;
 import model.Usuario;
+import service.UsuarioService;
 
 public class UsuarioAction extends ActionSupport {
 
@@ -27,8 +28,8 @@ public class UsuarioAction extends ActionSupport {
 			addActionError("usuario vacio");
 
 		}
-		if (!usuario.matches("[a-zA-Z0-9_Ò—]+@peru\\.com")) {//-@gg.ez
-			addActionError("Formato de correo no valido");
+		if (!usuario.matches("[a-zA-Z0-9_Ò—]+@gmail\\.com")) {//-@gg.ez
+			addActionError("Formato de correo no valido");	
 
 		}
 		// backslash paara caracteres especiales usadas en pattern
@@ -36,9 +37,7 @@ public class UsuarioAction extends ActionSupport {
 		u2.setUsuario(usuario);
 		u2.setClave(clave);
 
-		GestionUsuario gu = new GestionUsuario();
-
-		Usuario u = gu.validarUsuario(u2);
+		Usuario u = new UsuarioService().validarUsuario(u2);
 		
 		if (u != null) {
 			mensaje = "Credenciales correctos";
@@ -58,7 +57,7 @@ public class UsuarioAction extends ActionSupport {
 	public String registrar() {
 		System.out.println(u);
 		/* Llamamos al metodo registrar */
-		int i = new GestionUsuario().registrarUsuario(u);
+		int i = new UsuarioService().registrarUsuario(u);
 
 		if (i == 0) {
 			addActionError("No se registro correctamente");

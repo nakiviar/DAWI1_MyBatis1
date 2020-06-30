@@ -5,21 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.mapper.ProductoMapper">
 
-<!-- Para Arraylist<Categoria> ListadoCategorias();
-id="nombre del metodo en la interface"
-resultType="Clase del resultado"
+	<!-- Para Arraylist<Categoria> ListadoCategorias(); id="nombre del metodo 
+		en la interface" resultType="Clase del resultado" -->
+	<select id="listadoCategorias" resultType="model.Categoria">
+		select * from categorias
+	</select>
 
- -->
- <select id="listadoCategorias" resultType="model.Categoria"
- >
- select * from categorias;
- </select>
- 
- 
- <select id="filtradoCategorias" resultSetType="model.Categoria"
- parameterType=""
- >
- 
- </select>
- 
+
+	<select id="filtradoCategorias" resultType="model.Categoria"
+		parameterType="String">
+		select * from tb_categorias where descripcion like concat('%',?,'%')
+	</select>
+
+	<select id="listarProductos" resultType="model.Producto">
+		select * from tb_productos
+	</select>
+
+	<insert id="registrarProducto" parameterType="model.Producto">
+		insert into tb_productos values(#{codigo},#{descripcion},#{stock},#{precio}
+		,#{idcat},#{estado})
+	</insert>
+
+
 </mapper>

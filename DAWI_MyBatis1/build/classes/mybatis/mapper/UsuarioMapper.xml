@@ -5,16 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="mybatis.mapper.UsuarioMapper">
 
-<insert id="registrar" parameterType="model.Usuario">
-insert into tb_usuarios 
-	values (null,#{nombre},#{apellido},#{usuario},#{clave},
-	#{clave},#{fechanac},2,1)
-</insert>
+	<insert id="registrarUsuario" parameterType="model.Usuario">
+		insert into tb_usuarios
+		values (null,#{nombre},#{apellido},#{usuario},#{clave},
+		#{clave},#{fechanac},2,1)
+	</insert>
 
-<select id="validar" parameterType="model.Usuario"
-resultType="model.Usuario">
+	<select id="validarUsuario" parameterType="model.Usuario"
+		resultType="model.Usuario">
 
-select * from tb_usuarios where usuario=#{usuario} and clave =#{clave}
+		select * from tb_usuarios where usuario=#{usuario} and clave =#{clave}
 
-</select>
+	</select>
 </mapper>
+
+<!-- {call usp_validar (#{usuario},#{clave})} -->
