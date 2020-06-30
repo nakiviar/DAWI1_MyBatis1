@@ -4,6 +4,8 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+	<constant name="struts.mapper.action.prefix.enabled"
+		value="true" />
 	<package name="DAWI_MyBatis1" namespace="/"
 		extends="struts-default ,json-default"> <!-- Añadir json-default para convertir la lista en formato json -->
 		<action name="ingreso" method="login"
@@ -15,6 +17,56 @@
 				login.jsp
 			</result>
 		</action>
+
+		<action name="reg" method="registrar"
+			class="action.UsuarioAction">
+			<result name="ok">
+				login.jsp
+			</result>
+		</action>
+
+		<!-- PRODUCTO CRUD -->
+		<action name="regprod" method="registrar"
+			class="action.ProductoAction">
+			<result name="ok">
+				registro_producto.jsp
+			</result>
+			<result name="error">
+				registro_producto.jsp
+			</result>
+		</action>
+		<action name="listprod" method="listar"
+			class="action.ProductoAction">
+			<result name="ok">
+				listado.jsp
+			</result>
+		</action>
+		<action name="actprod" method="actualizar"
+			class="action.ProductoAction">
+			<result name="ok">
+				registro_producto.jsp
+			</result>
+		</action>
+		<action name="elimprod" method="eliminar"
+			class="action.ProductoAction">
+			<result name="ok">
+				listado.jsp
+			</result>
+		</action>
+
+		<action name="llenaCombo" method="listadoCategorias"
+			class="action.ProductoAction">
+			<result name="ok" type="json">
+			</result>
+		</action>
+
+		<action name="filtro" method="listadoCategoriasXfiltro"
+			class="action.ProductoAction">
+			<result name="ok" type="json">
+				registro_producto.jsp
+			</result>
+		</action>
+
 	</package>
 
 </struts>

@@ -34,7 +34,7 @@
 			<s:property value="mensaje" />
 		</p>
 		<br>
-		<p>Si es usuario nuevo registrese <a href="registro.jsp">aqui </a> </p>
+		<p>Si es usuario nuevo registrese <a href="registro_usuario.jsp">aqui </a> </p>
 	</div>
 </body>
 </html>

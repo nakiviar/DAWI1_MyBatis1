@@ -7,12 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- Para Arraylist<Categoria> ListadoCategorias(); id="nombre del metodo 
 		en la interface" resultType="Clase del resultado" -->
-	<select id="listadoCategorias" resultType="model.Categoria">
-		select * from categorias
+	<select id="listarCategorias" resultType="model.Categoria">
+		select * from tb_categorias
 	</select>
 
 
-	<select id="filtradoCategorias" resultType="model.Categoria"
+	<select id="filtrarCategorias" resultType="model.Categoria"
 		parameterType="String">
 		select * from tb_categorias where descripcion like concat('%',?,'%')
 	</select>

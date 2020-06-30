@@ -20,8 +20,17 @@ public class ProductoAction extends ActionSupport {
 	private Producto p;
 
 	// PRODUCTOS
-	
-	public String registrarProducto() {
+	public String actualizar() {
+		return "ok";
+	}
+	public String eliminar() {
+		return "ok";
+	}
+	public String listar() {
+		listaProducto = new ProductoService().listarProductos();
+		return "ok";
+	}
+	public String registrar() {
 		
 		int i = new ProductoService().registrarProducto(p);
 
@@ -34,11 +43,6 @@ public class ProductoAction extends ActionSupport {
 			addActionMessage(mensaje);
 		}
 
-		return "ok";
-	}
-
-	public String listadoProductos() {
-		listaProducto = new ProductoService().listarProductos();
 		return "ok";
 	}
 

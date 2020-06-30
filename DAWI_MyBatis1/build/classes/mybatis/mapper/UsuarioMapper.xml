@@ -7,8 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="registrarUsuario" parameterType="model.Usuario">
 		insert into tb_usuarios
-		values (null,#{nombre},#{apellido},#{usuario},#{clave},
-		#{clave},#{fechanac},2,1)
+		values (null,#{nombre},#{apellido},#{usuario},#{clave},#{fecha},2,1)
 	</insert>
 
 	<select id="validarUsuario" parameterType="model.Usuario"
